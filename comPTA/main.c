@@ -6,9 +6,9 @@ struct Node {    //链表结点
     struct Node* link;    //指向下一个结点的指针
 };
 
-/* 尾插法建立单链表：返回单链表的头指针 */
-struct Node* buildLinkedList(int* arr, int n); /* 尾插法建立单链表 */
-void printLinkedList(struct Node* head);       /* 打印链表 */
+/* 头插法建立单链表：返回单链表的头指针 */
+struct Node* buildLinkedList(int* arr, int n);    /* 头插法建立单链表 */
+void printLinkedList(struct Node* head);          /* 打印链表 */
 
 int main(int argc, char const *argv[]) {
     int n, i;
@@ -32,16 +32,14 @@ int main(int argc, char const *argv[]) {
     return 0;
 }
 struct Node* buildLinkedList(int* arr, int n){
-    struct Node*p,*pre,*head;
+    struct Node*p,*head;
     head=(struct Node*)malloc(sizeof(struct Node));
     head->link=NULL;
-    pre=head;
     for(int i=0;i<n;i++){
         p=(struct Node*)malloc(sizeof(struct Node));
         p->data=arr[i];
-        p->link=NULL;
-        pre->link=p;
-        pre=p;
+        p->link=head->link;
+        head->link=p;
     }
     return head;
 }
