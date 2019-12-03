@@ -1,54 +1,31 @@
 #include <stdio.h>
+#include <iostream>
 #include <stdlib.h>//malloc函数
-
-struct Node {    //链表结点
-    int data;    //数据
-    struct Node* link;    //指向下一个结点的指针
-};
-
-/* 头插法建立单链表：返回单链表的头指针 */
-struct Node* buildLinkedList(int* arr, int n);    /* 头插法建立单链表 */
-void printLinkedList(struct Node* head);          /* 打印链表 */
-
-int main(int argc, char const *argv[]) {
-    int n, i;
-    int* a;
-    scanf("%d", &n);
-    a = (int*)malloc(n * sizeof(int));    //动态内存分配申请数组空间
-    for (i = 0; i < n; ++i) {
-        scanf("%d", &a[i]);
+using namespace std;
+int s[1000];
+int a[100];
+int main()
+{
+    int n;
+    long long i=0;
+    scanf("%d",&n);
+    while(1)
+    {
+        if(n==-1)
+        {
+            break;
+        }
+        if(n%2==1)
+        {
+            s[i]=n;
+            i++;
+        }
+        scanf("%d",&n);
     }
-    
-    struct Node* head = NULL;    //声明一个指针变量head
-    
-    //创建链表，把返回的头指针赋值给head指针变量
-    head = buildLinkedList(a, n);
-    
-    //打印链表：整个链表用head来代表。
-    printLinkedList(head);
-    
-    free(a);    //释放存储空间
-    
+    printf("%d",s[0]);
+    for(i=1;s[i]!=NULL;i++)
+    {
+        printf(" %d",s[i]);
+    }
     return 0;
-}
-struct Node* buildLinkedList(int* arr, int n){
-    struct Node*p,*head;
-    head=(struct Node*)malloc(sizeof(struct Node));
-    head->link=NULL;
-    for(int i=0;i<n;i++){
-        p=(struct Node*)malloc(sizeof(struct Node));
-        p->data=arr[i];
-        p->link=head->link;
-        head->link=p;
-    }
-    return head;
-}
-void printLinkedList(struct Node* head){
-    head=head->link;
-    printf("%d",head->data);
-    head=head->link;
-    while(head!=NULL){
-        printf(" %d",head->data);
-        head=head->link;
-    }
-}
+    } 
